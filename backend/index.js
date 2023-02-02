@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import {Server} from "socket.io"
 import http from "http";
+// import axios from "axios";
 
 import ip from "ip";
 
@@ -20,11 +21,32 @@ const io = new Server(httpServer, {
 })
 
 io.on("connection", (socket) => {
-    console.log('user connected');
+    console.log('page');
 
-    socket.on("message", (data) => {
-        io.emit("data", data)
-    })
+    // socket.on("message", (data) => {
+    //     io.emit("data", data)
+    // })
+})
+
+app.post("/right", (req, res) => {
+    console.log("right")
+    res.send({ });
+    io.emit("direction", "right")
+})
+app.post("/left", (req, res) => {
+    console.log("left")
+    res.send({ });
+    io.emit("direction", "left")
+})
+app.post("/up", (req, res) => {
+    console.log("up")
+    res.send({ });
+    io.emit("direction", "up")
+})
+app.post("/down", (req, res) => {
+    console.log("down")
+    res.send({ });
+    io.emit("direction", "down")
 })
 
 app.use(cors())

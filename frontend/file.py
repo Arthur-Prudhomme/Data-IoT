@@ -8,6 +8,9 @@ import ujson
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 
+xAxis = ADC(Pin(27))
+yAxis = ADC(Pin(26))
+
 ssid = 'Erebor'
 password = 'ce mot de passe est difficile'
 wlan.connect(ssid, password)
@@ -15,18 +18,55 @@ url = "http://192.168.174.176:3000/"
 
 while not wlan.isconnected():
     utime.sleep(1)
-    print("co down")
-print("co up")
+    print("down")
+print("up")
 
 while True:
+    xValue = xAxis.read_u16()
+    yValue = yAxis.read_u16()
+    # print(str(xValue) +", " + str(yValue))
+    # utime.sleep(0.1)
+
     try:
-        print("GET")
-        r = urequests.get(url)
-        print(r.json())
-        r.close
-        utime.sleep(1)
+        if yValue > 40000:
+            r = urequests.post(url + "right")
+            r.close
+            utime.sleep(0.1)
     except Exception as e:
         print(e)
+
+    try:
+        if yValue < 30000:
+            r = urequests.post(url + "left")
+            r.close
+            utime.sleep(0.1)
+    except Exception as e:
+        print(e)
+
+    try:
+        if xValue > 40000:
+            r = urequests.post(url + "up")
+            r.close
+            utime.sleep(0.1)
+    except Exception as e:
+        print(e)
+
+    try:
+        if xValue < 30000:
+            r = urequests.post(url + "down")
+            r.close
+            utime.sleep(0.1)
+    except Exception as e:
+        print(e)
+
+    # try:
+    #     print("GET")
+    #     r = urequests.get(url)
+    #     print(r.json())
+    #     r.close
+    #     utime.sleep(1)
+    # except Exception as e:
+    #     print(e)
 
 # wlan = network.WLAN(network.STA_IF)
 # wlan.active(True)

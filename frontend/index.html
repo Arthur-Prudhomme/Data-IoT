@@ -8,12 +8,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bas">
+    <!-- <div class="bas">
         <button id="btn">Fetch data</button>
         <button id="btnSocket">Send socket</button>
-    </div>
+    </div> -->
 
-    <ul></ul>
+    <!-- <ul></ul> -->
+
+    <div class="title">Snake JS</div>
+    <div class="score"></div>
+    <canvas id="snake"></canvas>
+   
+    <div class="details"></div>
+    <div class="gameOver">
+      <h1>Game Over !</h1>
+      <div class="replay" onclick="init();">Replay</div>
+    </div>
+    <div class="pause">Pause</div>
 
     
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
