@@ -30,7 +30,7 @@ while True:
     xValueLower = xValueStored * 0.6
     yValueUpper = yValueStored * 1.4
     yValueLower = yValueStored * 0.6
-    # print(str(xValue) +", " + str(yValue))
+    print(str(xValue) +", " + str(yValue))
     # utime.sleep(0.1)
 
     try:
