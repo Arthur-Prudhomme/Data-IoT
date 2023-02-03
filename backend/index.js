@@ -48,6 +48,11 @@ app.post("/down", (req, res) => {
     res.send({ });
     io.emit("direction", "down")
 })
+app.post("/switch", (req, res) => {
+    console.log("down")
+    res.send({ });
+    io.emit("switch", "pressed")
+})
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
