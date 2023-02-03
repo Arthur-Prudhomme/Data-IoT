@@ -22,5 +22,5 @@ play
 
 ```
 joystick for direction
-joystick button for reset/replay
+joystick on press for reset/replay
 ```
