@@ -1,31 +1,26 @@
 ## Project setup
 
 ```
-npm init
-```
-
-```
-npm install node
-```
-
-```
-npm install express
-```
-
-```
-npm install cors
-```
-
-```
-npm install body-parser
-```
-
-```
-npm install socket.io
+npm i
 ```
 
 ### Compiles and hot-reloads for development
 
 ```
 npm run dev
+```
+
+### Hardware Setup
+
+```
+plug
+wait for the blue led to flash twice
+play
+```
+
+### Controls
+
+```
+joystick for direction
+joystick button for reset/replay
 ```
