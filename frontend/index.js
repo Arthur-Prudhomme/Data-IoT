@@ -15,8 +15,12 @@ socket.on("direction", (data) => {
     if(key == "down" && dir !== "up"){ setTimeout(function(){ dir = "down"; }, 30) }
 })
 
-
-
+socket.on("switch", (data) => {
+  console.log(data)
+  if(data == "pressed"){
+    gameOver()
+    init()
+  }})
 
 var canvas = document.getElementById('snake');
 var ctx = canvas.getContext('2d');

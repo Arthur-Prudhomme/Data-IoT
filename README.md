@@ -1,3 +1,5 @@
+# Group : Lucie Ehrsam, Céline Eap, Arthur Prud'homme
+
 ## Project setup
 
 ```
@@ -14,7 +16,7 @@ npm run dev
 
 ```
 plug
-wait for the blue led to flash twice
+wait for the blue led to stop flashing
 play
 ```
 

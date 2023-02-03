@@ -12,6 +12,8 @@ xAxis = ADC(Pin(27))
 yAxis = ADC(Pin(26))
 xValueStored = xAxis.read_u16()
 yValueStored = yAxis.read_u16()
+jButton = Pin(22, mode=Pin.IN, pull=Pin.PULL_UP)
+led17 = Pin(17, mode=Pin.OUT)
 
 ssid = 'Erebor'
 password = 'ce mot de passe est difficile'
@@ -19,9 +21,13 @@ wlan.connect(ssid, password)
 url = "http://192.168.174.176:3000/"
 
 while not wlan.isconnected():
+    led17.on()
+    utime.sleep(0.06)
+    led17.off()
     utime.sleep(1)
     print("down")
 print("up")
+led17.on()
 
 while True:
     xValue = xAxis.read_u16()
@@ -30,8 +36,17 @@ while True:
     xValueLower = xValueStored * 0.6
     yValueUpper = yValueStored * 1.4
     yValueLower = yValueStored * 0.6
-    print(str(xValue) +", " + str(yValue))
+    # print(str(xValue) +", " + str(yValue))
+    # print(jButton.value())
     # utime.sleep(0.1)
+
+    try:
+        if jButton.value() == 0:
+            r = urequests.post(url + "switch")
+            r.close
+            utime.sleep(0.1)
+    except Exception as e:
+        print(e)
 
     try:
         if yValue > yValueUpper:
