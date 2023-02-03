@@ -10,6 +10,8 @@ wlan.active(True)
 
 xAxis = ADC(Pin(27))
 yAxis = ADC(Pin(26))
+xValueStored = xAxis.read_u16()
+yValueStored = yAxis.read_u16()
 
 ssid = 'Erebor'
 password = 'ce mot de passe est difficile'
@@ -24,11 +26,15 @@ print("up")
 while True:
     xValue = xAxis.read_u16()
     yValue = yAxis.read_u16()
+    xValueUpper = xValueStored * 1.4
+    xValueLower = xValueStored * 0.6
+    yValueUpper = yValueStored * 1.4
+    yValueLower = yValueStored * 0.6
     # print(str(xValue) +", " + str(yValue))
     # utime.sleep(0.1)
 
     try:
-        if yValue > 40000:
+        if yValue > yValueUpper:
             r = urequests.post(url + "right")
             r.close
             utime.sleep(0.1)
@@ -36,7 +42,7 @@ while True:
         print(e)
 
     try:
-        if yValue < 30000:
+        if yValue < yValueLower:
             r = urequests.post(url + "left")
             r.close
             utime.sleep(0.1)
@@ -44,7 +50,7 @@ while True:
         print(e)
 
     try:
-        if xValue > 40000:
+        if xValue > xValueUpper:
             r = urequests.post(url + "up")
             r.close
             utime.sleep(0.1)
@@ -52,7 +58,7 @@ while True:
         print(e)
 
     try:
-        if xValue < 30000:
+        if xValue < xValueLower:
             r = urequests.post(url + "down")
             r.close
             utime.sleep(0.1)
